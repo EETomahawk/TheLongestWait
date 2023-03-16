@@ -33,6 +33,7 @@ while True:
     if html != "": #First page already processed.        
         p = re.search(nextPageRegex, html) #Look for next page in thread.
         if p is None: break #No "Next" page. Terminate while loop.
+            
         else: r.selector = f"{selector}&p={p.group()}" #Add next page number to HTML request.
     
     html = urlopen(r).read().decode("utf8") #Download HTML for page.
