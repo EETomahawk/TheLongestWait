@@ -93,5 +93,3 @@ print("(doesn't include doubleposting)\n")
 for i, (name, delta) in enumerate(sorted(shortestDeltas.items(), key = lambda x : x[1]), start=1):
     #Print index (starting at 1), time duration and username.
     print(f"{i}. {str(timedelta(seconds=delta))} - {name}")
-
-    
