@@ -23,8 +23,9 @@ regexYesterdayPostTimestamp = f"{regexTimeLookBehind}Yesterday ){regexTime}{rege
 #Match HH:MM:SS of posts from Today.
 regexTodayPostTimestamp = f"{regexTimeLookBehind}Today ){regexTime}{regexTimeLookAhead}"
 
-#Match username - first non-empty string between ">" and "</span>" AFTER timestamp.
-regexUsername = "(?<=>)\S+(?=<\/span>)"
+#Match username - one-word or two-word string between ">" and "</span>" AFTER timestamp.
+#May not work if username has more than one space.
+regexUsername = "(?<=>)\S+( \S+)?(?=<\/span>)"
 
 posts = [] #List of tuples - [(timestamp, author), ...]
 
