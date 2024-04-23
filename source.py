@@ -84,13 +84,13 @@ for i in range(1, len(posts)):
 print("The Longest Wait (Days, Hours:Minutes:Seconds)\n")       
 
 #Sort deltas descending and iterate resulting list of tuples.
-for i, (name, delta) in enumerate(sorted(longestDeltas.items(), key = lambda x : -x[1]), start=1):
+for i, (name, delta) in enumerate(sorted(longestDeltas.items(), key = lambda x : -x[1])[:5], start=1):
     #Print index (starting at 1), time duration and username.
     print(f"{i}. {str(timedelta(seconds=delta))} - {name}")
 
 print("\nThe Shortest Wait (Days, Hours:Minutes:Seconds)")
 print("(doesn't include doubleposting)\n")
 
-for i, (name, delta) in enumerate(sorted(shortestDeltas.items(), key = lambda x : x[1]), start=1):
+for i, (name, delta) in enumerate(sorted(shortestDeltas.items(), key = lambda x : x[1])[:5], start=1):
     #Print index (starting at 1), time duration and username.
     print(f"{i}. {str(timedelta(seconds=delta))} - {name}")
