@@ -81,16 +81,19 @@ for i in range(1, len(posts)):
     if (name not in shortestDeltas or delta < shortestDeltas[name]) and name != posts[i-1][1]:
         shortestDeltas[name] = delta
        
-print("The Longest Wait (Days, Hours:Minutes:Seconds)\n")       
+print("[b]The Longest Wait[/b]\n[code]")
 
 #Sort deltas descending and iterate resulting list of tuples.
 for i, (name, delta) in enumerate(sorted(longestDeltas.items(), key = lambda x : -x[1])[:5], start=1):
     #Print index (starting at 1), time duration and username.
-    print(f"{i}. {str(timedelta(seconds=delta))} - {name}")
+    s = f"{i}. {str(timedelta(seconds=delta))} - {name}"
+    #Pad hours to 2 digits as lazily as possible.
+    if s[13] == ":": s = f"{s[:12]}0{s[12:]}"
+    print(s)
 
-print("\nThe Shortest Wait (Days, Hours:Minutes:Seconds)")
-print("(doesn't include doubleposting)\n")
+print("[/code]\n[b]The Shortest Wait[/b] (Minutes:Seconds)\n[code]")
 
 for i, (name, delta) in enumerate(sorted(shortestDeltas.items(), key = lambda x : x[1])[:5], start=1):
     #Print index (starting at 1), time duration and username.
-    print(f"{i}. {str(timedelta(seconds=delta))} - {name}")
+    print(f"{i}. {str(timedelta(seconds=delta))[3:]} - {name}")
+print("[/code]")
