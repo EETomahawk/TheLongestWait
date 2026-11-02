@@ -21,8 +21,8 @@ regexPostTimestamp = (r'<a href="viewtopic\.php\?id=47849&p=\d+#p\d{6}">' #First
                       r'([^<]+)' #Capture group for timestamp: either YYYY-MM-DD HH:MM:SS or just HH:MM:SS.
                       r'</a>') #End of hyperlink.
 
-dates = { "Today": datetime.today().date(),
-          "Yesterday": datetime.today().date() - timedelta(days=1)}
+dates = { "Today ": datetime.today().date(),
+          "Yesterday ": datetime.today().date() - timedelta(days=1)}
 
 posts = [] #List of tuples containing (timestamp, author).
 currentPageNumber = 1
@@ -35,12 +35,12 @@ while not reachedLastPage:
 
     for match in re.finditer(regexPostTimestamp, html): #Iterate over each post on page.
 
-        day = match.group(1) #Post is from Yesterday or Today or None(=neither).
+        day = match.group(1) #Post is from Yesterday or Today or neither(=None).
         timeOrTimestamp = match.group(2) #Either YYYY-MM-DD HH:MM:SS or just HH:MM:SS.
 
         if day is not None: #Timestamp is "Today" or "Yesterday" followed by time of day.
             time = datetime.strptime(timeOrTimestamp, "%H:%M:%S").time() #Parse time of day.
-            timestamp = datetime.combine(dates[day], match.group(2)).timestamp() #Build unix timestamp.
+            timestamp = datetime.combine(dates[day], time).timestamp() #Build unix timestamp.
         else: #Post is older than Yesterday.
             timestamp = datetime.strptime(timeOrTimestamp, "%Y-%m-%d %H:%M:%S").timestamp() #Unix timestamp.
 
