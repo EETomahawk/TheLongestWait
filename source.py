@@ -1,19 +1,14 @@
 #Python 3.10
-
 from urllib.request import Request, urlopen
 import re
 from datetime import datetime, timedelta
 
 url = "https://forums.everybodyedits.com/viewtopic.php?id=47849"
 selector = "/viewtopic.php?id=47849"
-html = ""
 r = Request(url=url, headers={'User-Agent': 'Mozilla/5.0'})
 
-#Regex to find next page button in thread.
-nextPageRegex = r'<a rel="next"'
-
-#Regex to match username within "<span class...>USERNAME</span>".
-regexUsername = r"<span class[^>]*>([^<]+)</span>"
+nextPageRegex = r'<a rel="next"' #Regex to find next page button in thread.
+regexUsername = r"<span class[^>]*>([^<]+)</span>" #Regex to match username within "<span class...>USERNAME</span>".
 
 #Regex to find all post timestamps.
 regexPostTimestamp = (r'<a href="viewtopic\.php\?id=47849&p=\d+#p\d{6}">' #First part of URL containing post timestamp.
